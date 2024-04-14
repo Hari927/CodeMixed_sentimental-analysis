@@ -3,6 +3,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import tensorflow.keras.backend as K
 import pickle
+import requests
 
 # Apply background and styling directly within the app
 def set_bg_hack_url():
@@ -29,13 +30,20 @@ def f1_metric(y_true, y_pred):
     f1_val = 2*(precision*recall)/(precision+recall+K.epsilon())
     return f1_val
 
-# Load your trained model with the custom_objects parameter for the custom metric
-model_url = 'https://github.com/Hari927/CodeMixed_sentimental-analysis/blob/main/sentiment%20analysis.h5?raw=true'
-model = load_model(model_url, custom_objects={'f1_metric': f1_metric})
+# Load your trained model
+model_url = "https://github.com/Hari927/CodeMixed_sentimental-analysis/raw/main/sentiment%20analysis.h5"
+model_response = requests.get(model_url)
+with open("sentiment_analysis.h5", "wb") as model_file:
+    model_file.write(model_response.content)
+model = load_model("sentiment_analysis.h5", custom_objects={'f1_metric': f1_metric})
 
 # Load your tokenizer
-tokenizer_url = 'https://github.com/Hari927/CodeMixed_sentimental-analysis/blob/main/tokenizer.pickle?raw=true'
-tokenizer = pickle.load(urllib.request.urlopen(tokenizer_url))
+tokenizer_url = "https://github.com/Hari927/CodeMixed_sentimental-analysis/raw/main/tokenizer.pickle"
+tokenizer_response = requests.get(tokenizer_url)
+with open("tokenizer.pickle", "wb") as tokenizer_file:
+    tokenizer_file.write(tokenizer_response.content)
+with open("tokenizer.pickle", 'rb') as handle:
+    tokenizer = pickle.load(handle)
 
 max_length = 80  # Adjust this value to match the input shape your model expects
 
