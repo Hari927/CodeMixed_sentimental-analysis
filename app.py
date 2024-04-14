@@ -30,11 +30,12 @@ def f1_metric(y_true, y_pred):
     return f1_val
 
 # Load your trained model with the custom_objects parameter for the custom metric
-model = load_model('sentiment analysis.h5', custom_objects={'f1_metric': f1_metric})
+model_url = 'https://github.com/Hari927/CodeMixed_sentimental-analysis/blob/main/sentiment%20analysis.h5?raw=true'
+model = load_model(model_url, custom_objects={'f1_metric': f1_metric})
 
 # Load your tokenizer
-with open('tokenizer.pickle', 'rb') as handle:
-    tokenizer = pickle.load(handle)
+tokenizer_url = 'https://github.com/Hari927/CodeMixed_sentimental-analysis/blob/main/tokenizer.pickle?raw=true'
+tokenizer = pickle.load(urllib.request.urlopen(tokenizer_url))
 
 max_length = 80  # Adjust this value to match the input shape your model expects
 
