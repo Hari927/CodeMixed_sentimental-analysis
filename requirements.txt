@@ -1,7 +1,4 @@
 tensorflow
-pandas
-numpy
-matplotlib.pyplot
 nltk
 nltk.corpus
 nltk.tokenize
@@ -9,7 +6,6 @@ sklearn.model_selection
 sklearn.svm
 tensorflow.keras.preprocessing.text
 tensorflow.keras.preprocessing.sequence
-tensorflow.keras.backend
 tensorflow.keras.models
 tensorflow.keras.layers
 sklearn.ensemble
@@ -17,5 +13,5 @@ sklearn.neighbors
 sklearn.tree 
 sklearn.metrics
 tensorflow.keras.models
-tensorflow.keras.preprocessing.sequence
-streamlit
+
+
