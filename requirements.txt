@@ -1,9 +1,8 @@
-tensorflow==2.16.1
+streamlit
+tensorflow
 pandas
 numpy
 matplotlib
-nltk==3.8.1
-emoji
+nltk
 scikit-learn
-seaborn
-streamlit
+keras
